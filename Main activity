@@ -1,0 +1,34 @@
+package com.example.ihaka.dicegame;
+
+import android.content.Intent;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Button;
+import android.view.View;
+
+public class MainActivity extends AppCompatActivity {
+
+    private static int timeOut = 4000;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        /*A handler that times out at 4 seconds and switches to the splash screen*/
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent timeOut = new Intent(MainActivity.this, Splash.class);
+                startActivity(timeOut);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                finish();
+            }
+        }, timeOut);
+
+    }
+
+
+
+}
